@@ -44,4 +44,18 @@
     <h2>Vivek Tarun</h2>
     <p>Angular Minds Pvt Ltd, Baner</p>
   </ion-item>
+  <div class="gallery-button" text-center>
+      <img [src]="imageSrc" />
+      <button ion-button icon-only (click)="openGallery()">    
+    <ion-icon name="images" ></ion-icon>
+    </button>
+    <p>Choose a Photo from local</p>  
+  </div>
+  <ion-item>
+      <h4>Image Preview</h4>
+      <img src="{{imageFileFromServer}}" *ngIf="imageFileFromServer" alt="Ionic File" width="300" />
+    </ion-item>
+    <ion-item>
+        <button ion-button (click)="uploadFile()">Upload</button>
+      </ion-item>
 </ion-content>

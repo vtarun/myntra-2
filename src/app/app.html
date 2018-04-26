@@ -1,8 +1,8 @@
-<ion-menu [content]="content" >
-  <ion-header (click)="logout()">
+<ion-menu [content]="content">
+  <ion-header (click)="toggleLog()">
     <!-- <ion-toolbar> -->
-      <!-- <ion-title>Menu</ion-title> -->
-      <!-- <ion-card>
+    <!-- <ion-title>Menu</ion-title> -->
+    <!-- <ion-card>
         <div style="width:20%;height:20%;margin-bottom:10px;">
         
           <img src="../assets/imgs/Chrysanthemum.jpg" />
@@ -10,15 +10,19 @@
         </div>
         <div class="card-title">Vivek Tarun</div>
       </ion-card> -->
-      <ion-list style="margin:0px;">
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="assets/imgs/profile.jpg">
-            </ion-avatar>
-            <h2>Vivek Tarun</h2>
-            <p>Angular Minds Pvt Ltd, Baner</p>
-          </ion-item>
-        </ion-list>
+    <ion-list style="margin:0px;font-size: 15px;font-weight: 400;">
+      <ion-item>
+        <ion-avatar item-start>
+          <!-- <img src="assets/imgs/profile.jpg"> -->
+          <img src="{{imageSourceTest}}" />
+        </ion-avatar>
+        <span>Log In . Sign Up</span>
+        <span item-end icon-right>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </span>
+        <p>Myntra Ltd, Bangalore</p>        
+      </ion-item>
+    </ion-list>
     <!-- </ion-toolbar> -->
   </ion-header>
 

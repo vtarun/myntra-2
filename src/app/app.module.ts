@@ -89,7 +89,7 @@ import { GlobalServiceProvider } from '../providers/global-service/global-servic
     PurchasePage
   ],
   providers: [
-    StatusBar,
+    StatusBar,    
     SplashScreen,
     Camera,
     Base64ToGallery,
@@ -99,6 +99,9 @@ import { GlobalServiceProvider } from '../providers/global-service/global-servic
     File,
     FileTransfer,    
     MediaCapture,
+    FileTransfer,
+    
+    FileTransferObject,
         
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpServiceProvider,

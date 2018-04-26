@@ -11,6 +11,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 @Component({
   selector: 'page-seach-modal',
@@ -26,12 +27,15 @@ export class SeachModalPage {
   }
   imageSourceTest : any;
   loader: any;
+  imageSrc: any;
+  imageFileFromServer: any = null;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public base64ToGallery: Base64ToGallery,
     public loadingCtrl: LoadingController,
     public fileChooser: FileChooser,
+    public httpService: HttpServiceProvider,
     public filePath: FilePath,
     public fileOpener: FileOpener,
     public transfer: FileTransfer,
@@ -63,8 +67,7 @@ export class SeachModalPage {
         res => {
           if (this.loader) {
             //this.loader.dismiss();
-          }
-          
+          }          
           console.log('camera success');
           this.imageSourceTest = base64Image;
         },
@@ -80,6 +83,7 @@ export class SeachModalPage {
 
   chooseFile(): void {
     this.fileChooser.open().then(file => {
+      alert('got file from local');
       this.filePath.resolveNativePath(file).then(resolvedFilePath => {
         this.fileOpener.open(resolvedFilePath, 'application/png').then(value => {
           alert('it worked');
@@ -87,6 +91,7 @@ export class SeachModalPage {
       })
     })
   }
+
   captureImageTest(): void {
     let options: CaptureImageOptions = { limit: 3 };
     this.mediaCapture.captureImage(options)
@@ -97,6 +102,50 @@ export class SeachModalPage {
         },
         (err: CaptureError) => console.error(err)
       );
+  }
+
+  private openGallery (): void {
+    let cameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,      
+      quality: 100,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      encodingType: this.camera.EncodingType.JPEG,      
+      correctOrientation: true
+    }
+  
+    this.camera.getPicture(cameraOptions)
+      .then(file_uri => {
+        this.imageSrc = file_uri
+
+      }, 
+      err => console.log(err));   
+  }
+
+  uploadFile() {
+    
+    
+    const fileTransfer: FileTransferObject = this.transfer.create();
+  
+    let options: FileUploadOptions = {
+      fileKey: 'ionicfile',
+      fileName: 'ionicfile',
+      chunkedMode: false,
+      mimeType: "image/jpeg",
+      headers: {}
+    }
+  
+    fileTransfer.upload(this.imageSrc, "http://192.168.0.118:3000/api/fileupload", options)
+      .then((data) => {
+        alert('loading file');
+      console.log(data+" Uploaded Successfully");
+      this.imageFileFromServer = "http://192.168.0.118:3000/profile/ionicfile.jpg"
+      
+      
+    }, (err) => {
+      console.log(err);      
+    });
   }
 
 }
