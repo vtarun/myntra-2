@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>purchase</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row style="border:1px solid red; margin-top:2px;" *ngFor="let product of products">
+    <ion-col col-4>
+      <img src='{{imageurl+product.imgsrc}}' />
+    </ion-col>
+    <ion-col col-8>
+      <p style="font-size: 12px;">{{product.brand}}</p>
+      <p style="font-size: 12px;">
+        <b>${{product.price}}</b>
+      </p>
+      <p style="font-size: 12px;">{{product.details}}</p>
+      <p style="font-size: 12px;">
+        Qty: {{product.qty}}
+      </p>
+    </ion-col>
+  </ion-row>
+  <ion-card>
+      <ion-card-content>
+          <h2>Delivery Address</h2>
+          <p>Address, Pune</p>
+        </ion-card-content>
+    </ion-card> 
+    <h2>Total Bill : {{totalBill}}</h2> 
+    <button ion-button full (click)="purchase()">Place Order</button>
+</ion-content>

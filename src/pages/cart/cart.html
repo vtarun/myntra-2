@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+      <ion-col>
+        <ion-title>cart</ion-title>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button small icon-only right (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <!-- <ion-row style="border:1px solid red; margin-top:2px;">
+      <ion-col col-4>
+        <img [src]="product.imgsrc" />
+      </ion-col>
+      <ion-col col-8>      
+        <p style="font-size: 12px;">{{product.brand}}</p>
+        <p style="font-size: 12px;">
+          <b>{{product.price}}</b>
+       </p>
+      <p style="font-size: 12px;">{{product.details}}</p>
+      <p style="font-size: 12px;">
+        <button ion-button small icon-only>
+            <ion-icon name="arrow"></ion-icon>
+        </button>Qty<button ion-button small icon-only>
+            <ion-icon name="arrow"></ion-icon>
+        </button>
+      </p>
+      <button ion-button full (click)="removeItem()">remove Items</button>
+    </ion-col>
+    </ion-row> -->
+
+      <!-- <ion-row style="border:1px solid red; margin-top:2px;">
+        <ion-col col-4>
+          <img [src]="product.imgsrc" />
+        </ion-col>
+        <ion-col col-8>      
+          <p style="font-size: 12px;">{{product.brand}}</p>
+          <p style="font-size: 12px;">
+            <b>{{product.price}}</b>
+         </p>
+        <p style="font-size: 12px;">{{product.details}}</p>
+        <p style="font-size: 12px;">
+          <button ion-button small icon-only>
+              <ion-icon name="arrow"></ion-icon>
+          </button>Qty<button ion-button small icon-only>
+              <ion-icon name="arrow"></ion-icon>
+          </button>
+        </p>
+        <button ion-button full (click)="removeItem()">remove Items</button>
+      </ion-col>
+      </ion-row> -->
+      <!-- <ion-row style="border:1px solid red; margin-top:2px;">
+          <ion-col col-4>
+            <img [src]="product.imgsrc" />
+          </ion-col>
+          <ion-col col-8>      
+            <p style="font-size: 12px;">{{product.brand}}</p>
+            <p style="font-size: 12px;">
+              <b>{{product.price}}</b>
+           </p>
+          <p style="font-size: 12px;">{{product.details}}</p>
+          <p style="font-size: 12px;">
+            <button ion-button small icon-only (click)="decreaseQty()">
+                <ion-icon name="remove"></ion-icon>
+            </button>Qty: {{totalQty}}
+            <button ion-button small icon-only (click)="increaseQty()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+          </p>
+          <button ion-button full name="remove" (click)="removeItem()">remove Items</button>
+        </ion-col>
+        </ion-row> -->
+
+      <!--  -->
+      <ion-row style="border:1px solid red; margin-top:2px;" *ngFor="let item of items ; let i = index">
+        <ion-col col-4>
+          <img src='{{imageurl+item.imgsrc}}' />
+        </ion-col>
+        <ion-col col-8>
+          <p style="font-size: 12px;">{{item.brand}}</p>
+          <p style="font-size: 12px;">
+            <b>${{item.price}}</b>
+          </p>
+          <p style="font-size: 12px;">{{item.details}}</p>
+          <p style="font-size: 12px;">
+            <button ion-button small icon-only (click)="decreaseQty(i)">
+              <ion-icon name="remove"></ion-icon>
+            </button>Qty: {{item.qty}}
+            <button ion-button small icon-only (click)="increaseQty(i)">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </p>
+          <button ion-button full name="remove" (click)="removeItem(i)">remove Items</button>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card-content>
+
+  </ion-card>  
+  <ion-row>
+    <ion-buttons start>
+      <button ion-button outline>
+        Total : ${{totalBill}}
+      </button>
+    </ion-buttons>
+
+    <ion-buttons >
+      <button ion-button (click)="purchaseItems()" [disabled]="items.length == 0">
+        Purchase Items
+      </button>
+    </ion-buttons>
+  </ion-row>
+</ion-content>

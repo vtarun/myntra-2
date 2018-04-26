@@ -1,0 +1,25 @@
+<header title="Men"></header>
+<ion-content class="custom-content">
+    <img src="assets/imgs/men-BG.jpg" />
+    <h2 style="margin:0px;padding:0px 10px;background-color: #e0e2dd9c;">#FEATURED</h2>
+    <p style="margin:0px;padding:0px 10px;background-color: #e0e2dd9c;">Sunny days and sizzling looks are here again!</p>
+    <ion-row style="margin:2px;">
+        <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3>
+            <img src="assets/imgs/men-shirt-1.jpg" />
+        </ion-col>
+        <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3>
+            <img src="assets/imgs/men-shirt-2.jpg" />
+        </ion-col>
+    </ion-row>
+    <ion-row style="margin:2px 2px 60px 2px;">        
+        <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center *ngFor="let product of products" (click)="openProductDetailsModal(product)"
+            style="padding:0px;border: 1px solid #c1c1c1;">
+            <img src='{{imageurl+product.imgsrc}}' />
+            <p style="margin-top: 1px;margin-bottom: 0px;font-size: 12px;">{{product.brand}}</p>
+            <p style="margin-top: 1px;margin-bottom: 0px;font-size: 13px;">
+                <b>${{product.price}}</b>
+            </p>
+            <p style="margin-top: 1px;margin-bottom: 0px;font-size: 12px;">{{product.details}}</p>
+        </ion-col>
+    </ion-row>
+</ion-content>

@@ -1,0 +1,31 @@
+<header title="Home"></header>
+<ion-content class="custom-content" padding>
+  <ion-scroll scrollX="true" direction="x">
+    <ion-card *ngFor="let item of lists" (click)="navigate(item)">
+      <img src="{{item.imgSrc}}" alt="item.title" />
+      <ion-card-content>
+        <h2 style="margin-top:0px;text-align:center">{{item.title}}</h2>
+      </ion-card-content>
+    </ion-card>
+  </ion-scroll>
+  <ion-slides autoplay="2000" loop="true" speed="600" style="padding:0%;">
+    <ion-slide>
+      <img src="assets/imgs/Home-BG.jpg" />
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/Home-BG-2.jpg" />
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/imgs/Home-BG-3.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/Home-BG-4.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/Home-BG-5.jpg" />
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
